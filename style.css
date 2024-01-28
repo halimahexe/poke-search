@@ -39,6 +39,10 @@
     gap: 0.5rem;
 }
 
+.stack-xs > * + * {
+    margin-top: 0.5rem;
+}
+
 .stack-sm > * + * {
     margin-top: 1rem;
 }
