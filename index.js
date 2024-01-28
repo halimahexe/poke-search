@@ -34,6 +34,7 @@ form.addEventListener('submit', (event) => {
             // Adding fetched avatar to the output
             const avatar = document.createElement('img');
             avatar.src = pokemonData.sprites.front_default;
+            avatar.alt = '';
             
             output.append(heading, avatar);
 
