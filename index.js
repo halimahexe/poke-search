@@ -14,8 +14,10 @@ form.addEventListener('submit', (event) => {
     const formData = new FormData(form);
     const name = formData.get('name');    
 
-    // Reset output so search results don't stack
+    // Reset search bar after searching
+    form.reset();
 
+    // Reset output so search results don't stack
     output.innerHTML = '';
     
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
