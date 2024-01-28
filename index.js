@@ -5,6 +5,7 @@ const pokeballs = document.querySelectorAll('.pokeball');
 // Setting Pokeball images to default (closed) before search
 pokeballs.forEach((pokeball) => {
     pokeball.setAttribute('src', 'assets/Pokeball.svg')
+    pokeball.alt = 'closed pokeball';
 });
 
 form.addEventListener('submit', (event) => {
@@ -62,7 +63,8 @@ form.addEventListener('submit', (event) => {
 
     // Pokeballs open when the pokemon appears!
     pokeballs.forEach((pokeball) => {
-        pokeball.setAttribute('src', 'assets/Open-Pokeball.svg')
+        pokeball.src = 'assets/Open-Pokeball.svg';
+        pokeball.alt = 'open pokeball';
     });
 })
 
@@ -71,5 +73,6 @@ function meme() {
     const meme = document.createElement('img');
     meme.src = 'assets/meme_surprised_shocked_pikachu.svg';
     meme.setAttribute('class','img-md');
+    meme.alt = 'surprised pikachu';
     output.append(meme);
 }
