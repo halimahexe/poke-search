@@ -12,7 +12,7 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
-    const name = formData.get('name');    
+    const name = formData.get('name').toLowerCase();
 
     // Reset search bar after searching
     form.reset();
@@ -31,7 +31,7 @@ form.addEventListener('submit', (event) => {
             console.log(pokemonData);
             // Adding searched name as a header
             const heading = document.createElement('h2');
-            heading.textContent = pokemonData.name;
+            heading.textContent = pokemonData.name[0].toUpperCase() + pokemonData.name.slice(1); //capitalise first letter
             
             // Adding fetched avatar to the output
             const avatar = document.createElement('img');
