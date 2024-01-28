@@ -1,12 +1,22 @@
-const form = document.querySelector('#pokeForm');
-const output = document.querySelector('#output');
+const form = document.querySelector('#pokeForm'); // Form containing search box
+const output = document.querySelector('#output'); // Output where search result appears
+const pokeballs = document.querySelectorAll('.pokeball');
+
+// Setting Pokeball images to default (closed) before search
+pokeballs.forEach((pokeball) => {
+    pokeball.setAttribute('src', 'assets/Pokeball.svg')
+});
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
-    const name = formData.get('name');
+    const name = formData.get('name');    
 
+    // Reset output so search results don't stack
+
+    output.innerHTML = '';
+    
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
         .then((response) => {
             if (!response.ok) {
@@ -14,10 +24,52 @@ form.addEventListener('submit', (event) => {
             }
             return response.json();
         })
-        .then((data) => {
-            console.log(data);
+        .then((pokemonData) => {
+            console.log(pokemonData);
+            // Adding searched name as a header
+            const heading = document.createElement('h2');
+            heading.textContent = pokemonData.name;
+            
+            // Adding fetched avatar to the output
+            const avatar = document.createElement('img');
+            avatar.src = pokemonData.sprites.front_default;
+            
+            output.append(heading, avatar);
+
+            // Adding Pokemon type
+            const types = pokemonData.types
+            types.forEach((type) => {
+                const pokeType = type.type.name;
+                const p = document.createElement('p');
+                p.textContent = pokeType;
+                p.classList.add('pokemon-type', `pokemon-type--${pokeType}`)
+                output.append(p);
+            })
         })
-        .catch((error) =>
-            console.error(error)
-        );
+        .catch((error) => {
+            if (error.message === '404') {
+                let message = document.createElement('p');
+                message.textContent = `⚠️ Couldn't find "${name}"`;
+                output.append(message);
+                meme();
+            } else {
+                let message = document.createElement('p');
+                message.textContent = `⚠️ Something went wrong`;
+                output.append(message);
+                meme();
+            }
+        });
+
+    // Pokeballs open when the pokemon appears!
+    pokeballs.forEach((pokeball) => {
+        pokeball.setAttribute('src', 'assets/Open-Pokeball.svg')
+    });
 })
+
+// Code to display meme in case of error message
+function meme() {
+    const meme = document.createElement('img');
+    meme.src = 'assets/meme_surprised_shocked_pikachu.svg';
+    meme.setAttribute('class','img-md');
+    output.append(meme);
+}
