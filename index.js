@@ -46,7 +46,7 @@ form.addEventListener('submit', (event) => {
                 const pokeType = type.type.name;
                 const p = document.createElement('p');
                 p.textContent = pokeType;
-                p.classList.add('pokemon-type', `pokemon-type--${pokeType}`)
+                p.classList.add('pokemon-type', `pokemon-type--${pokeType}`) // styles the box containing type depending on name
                 output.append(p);
             })
         })
@@ -76,6 +76,6 @@ function meme() {
     const meme = document.createElement('img');
     meme.src = 'assets/meme_surprised_shocked_pikachu.svg';
     meme.setAttribute('class','img-md');
-    meme.alt = 'surprised pikachu';
+    meme.alt = 'surprised pikachu'; // setting alt text for image
     output.append(meme);
 }
