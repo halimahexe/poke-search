@@ -20,12 +20,17 @@
 .center {
     margin-left: auto;
     margin-right: auto;
-    max-width: 60rem;
+    max-width: 40rem;
+}
+
+.center-text {
+    text-align: center;
 }
 
 .flex-row {
     display: flex;
     flex-direction: row;
+    /* flex-wrap: wrap; */
 }
 
 .flex-col {
@@ -60,13 +65,19 @@
     max-width: 10rem;
 }
 
+/* Main CSS */
+
+body {
+    background-color: #fcd3b1;
+}
+
 main {
     margin-top: 2rem;
 }
 
 /* Pokemon Type styling */
 
-.pokemon-type {
+.pokemon-type, {
     width: fit-content;
     max-width: 10rem;
     display: block;
